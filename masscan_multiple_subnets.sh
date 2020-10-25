@@ -7,5 +7,5 @@ subnet_array=(
 )
 
 for val in ${subnet_array[@]}; do
-   massscan $val -p 80,443, 8080, 8443, 81 >> massscan_open_ports
+   massscan $val -p 80, 443, 8080, 8443, 81, 4444, 4443, 8888 >> massscan_open_ports
 done
