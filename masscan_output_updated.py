@@ -5,22 +5,25 @@ Lines = unparsed_file.readlines()
 # Strips the newline character 
 for line in Lines: 
     temp_split = line.split()
-    # For every port try both HTTP and HTTPS
     
+    unparsed_port = temp_split[3]
+    port = unparsed_port.replace('/tcp', '')
+    
+    ip = temp_split[5]
+    
+    # For every port try both HTTP and HTTPS
     #HTTP
-    if temp_split[1] == "443" or temp_split[1] == "80":
-    	http_formatted_line = ("http://" + temp_split[0])
+    if port == "443" or port == "80":
+    	http_formatted_line = ("http://" + ip)
     else:
-        http_formatted_line = ("http://" + temp_split[0] + ":" + temp_split[1])
-
+        http_formatted_line = ("http://" + ip + ":" + port)
 
     #HTTPS
-    if temp_split[1] == "443" or temp_split[1] == "80":
-    	https_formatted_line = ("https://" + temp_split[0])
+    if port == "443" or port == "80":
+    	https_formatted_line = ("https://" + ip)
     else:
-        https_formatted_line = ("https://" + temp_split[0] + ":" + temp_split[1])
+        https_formatted_line = ("https://" + ip + ":" + port)
 
-    
     #Output
     parsedfile.writelines(http_formatted_line)
     parsedfile.writelines("\n")
